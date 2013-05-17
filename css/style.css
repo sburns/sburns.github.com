@@ -1,0 +1,28 @@
+body {
+  padding-left: 0;
+  padding-right: 0;
+}
+.container {
+  margin-top: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "eskapade-1","eskapade-2", sans-serif;
+}
+
+p {
+  font-family: "museo-sans1", "museo-sans-2", sans-serif;
+}
+
+.byline {
+  font-size: 12pt;
+}
+
+.my-nav {
+  padding-left: 0;
+}
+
+.phone-padding {
+    padding-left: 20px;
+    padding-right: 20px;
+}

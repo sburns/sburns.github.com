@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap-responsive.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/css/common.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/css/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://use.typekit.net/xpw7pek.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <title>homepage</title>
+  </head>
+  <body>
+    <div class="site">
+      <div class="container">
+        <div class="row">
+          <div class="span4 affix hidden-phone" data-spy="affix">
+            <div class="row">
+              <h1><a href="/">{{ site.name}}</a></h1>
+            </div>
+          <div class="row">
+            <ul class="nav nav-list my-nav">
+              <li class="divider"></li>
+              <li><a href="/articles.html">Posts</a></li>
+              <li><a href="/software.html">Software</a></li>
+              <li class="divider"></li>
+              <li class="nav-header">Contact</li>
+              <li><a href="http://github.com/sburns">Github</a></li>
+              <li><a href="http://twitter.com/scottsburns">Twitter</a></li>
+              <li><a href="http://www.facebook.com/scott.s.burns">Facebook</a></li>
+              <li><a href="mailto:scott DOT s DOT burns AT google's email DOT com">Email</a></li>
+              <li class="divider"></li>
+              <li class="nav-header">Recent</li>
+              {% for post in site.posts limit:5 %}
+              <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="span6 offset4">
+          <div class="visible-phone phone-padding">
+            <h1><a href="/">{{ site.name}}</a></h1>
+            <ul class="nav nav-pills">
+              <li><a href="/articles.html">Posts</a></li>
+              <li><a href="/software.html">Software</a></li>
+              <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            {{ content }}
+          </div>
+          <div class="visible-tablet visible-desktop">
+            {{ content }}
+          </div>
+        </div>
+        <div class="span2">
+        </div>
+      </div> <!-- /container -->
+    </div>
+  </body>
+</html>
