@@ -7,11 +7,13 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "eskapade-1","eskapade-2", sans-serif;
+  font-family: "museo-sans1", "museo-sans-2", sans-serif;
+  font-weight: 700;
 }
 
-p {
+p li {
   font-family: "museo-sans1", "museo-sans-2", sans-serif;
+  color: #3D3D3D ;
 }
 
 .byline {
@@ -23,6 +25,10 @@ p {
 }
 
 .phone-padding {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+a {
+  color: #416F9F;
 }
