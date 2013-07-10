@@ -4,7 +4,7 @@ layout: nil
 <?xml version="1.0"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Scott Burns</title>
+    <title>sburns.org</title>
     <link>http://sburns.org/</link>
     <atom:link href="http://sburns.org/rss.xml" rel="self" type="application/rss+xml" />
     <description>All Posts</description>
