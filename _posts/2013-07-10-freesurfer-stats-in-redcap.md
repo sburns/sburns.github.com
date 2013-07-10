@@ -4,8 +4,6 @@ date: 2013-07-10
 layout: post
 ---
 
-# Freesurfer Stats in REDCap
-
 [Freesurfer](http://surver.nmr.mgh.harvard.edu) is a fantastic software package for reconstructing the brain's cortical surface from a high resolution structural MR image. Just give it a T1-weighted image (where gray matter is gray, white matter white) and a day of processing time (depending on image quality) and it produces 3D meshes of the white and gray matter surfaces. Given these models, it can then do all sorts of fancy calculations like area and average cortical thickness of particular regions. It's a fantastic tool for researchers because manual delineation of the cortical surface requires expertise and is extremely time-intensive. It's not an option when you're collecting data from one or two subjects a day as we do in our lab.
 
 The problem with Freesurfer is that it can be extremely verbose with the data it spits out. We want to put these statistics into our REDCap databases so we can better analyze them against the myriad of behavioral measures we collect. If you run Freesurfer and generate advanced labeling, it can produce upwards of 2700 measures per subject. It's simply untenable to make some poor RA copy/paste all of these values into REDCap.
