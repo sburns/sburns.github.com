@@ -19,3 +19,9 @@ A feature of REDCap, data entry triggers, send notifications to external website
 Because only one URL can be associated with a project, middleware is required if you want to implement more than one workflow for a project.
 
 I wrote switchboard to do just that. It is a [Flask](http://flask.pocoo.org) blueprint that can be easily added to existing Flask apps.
+
+### [recon-stats](https://github.com/sburns/recon-stats)
+
+Freesurfer produces a lot of data about the brain. To better analyze all of this data against the behavioral data in our REDCap databases, I wrote `recon-stats` to parse the stats files produced by Freesurfer and produce a single dictionary that can be further manipulated. For example, you might use PyCap to then import it to a REDCap project.
+
+I wrote a [post](/2013/07/10/freesurfer-stats-in-redcap.html) about it that contains some one potential way to use it.
