@@ -24,4 +24,4 @@ I wrote switchboard to do just that. It is a [Flask](http://flask.pocoo.org) blu
 
 Freesurfer produces a lot of data about the brain. To better analyze all of this data against the behavioral data in our REDCap databases, I wrote `recon-stats` to parse the stats files produced by Freesurfer and produce a single dictionary that can be further manipulated. For example, you might use PyCap to then import it to a REDCap project.
 
-I wrote a [post](/2013/07/10/freesurfer-stats-in-redcap.html) about it that contains some one potential way to use it.
+I wrote a [post]({% post_url 2013-07-10-freesurfer-stats-in-redcap %}) about it that contains some one potential way to use it.
