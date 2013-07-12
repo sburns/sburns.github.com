@@ -4,7 +4,7 @@ date: 2013-07-12
 layout: post
 ---
 
-I will be giving a talk for the Vanerbilt Kennedy Center's Statistical and Methodology Core on Monday, July 22nd at 12:30p in One Magnolia Circle, Rm 241.
+I will be giving a talk for the Vanderbilt Kennedy Center's Statistical and Methodology Core on Monday, July 22nd at 12:30p in One Magnolia Circle, Rm 241.
 
 The official calendar event is [can be found here](http://kc.vanderbilt.edu/site/newsandevents/calendar/page.aspx?id=3950).
 
