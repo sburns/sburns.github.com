@@ -2,12 +2,28 @@
 layout: default
 ---
 
-# Hi.
+<h1>Hello</h1>
 
-My name is Scott. I like to build things. I usually use python or wood.
+<p>
+    My name is Scott. I like to build things. I usually use python or wood.
+</p>
 
-I live in Nashville, am married to a wonderful woman with whom I share a beautiful daughter and love to hike.
+<p>
+    I live in Nashville, am married to a wonderful woman with whom I share a beautiful daughter and love to hike.
+</p>
 
-I work at Vanderbilt University for the [Education and Brain Science Research Lab](http://kc.vanderbilt.edu/educationandbrainlab). We study reading disabilities in children and I lead the Magnetic Resonance Imaging side of our research. I write lots of little- and medium-sized tools to make our lives easier related to imaging processing & analysis and the production of good science.
+<p>
+    I work at Vanderbilt University for the <a href="http://kc.vanderbilt.edu/educationandbrainlab">Education and Brain Science Research Lab</a>. We study reading disabilities in children and I lead the Magnetic Resonance Imaging side of our research. I write lots of little- and medium-sized tools to make our lives easier related to imaging processing &amp; analysis and the production of good science.
+</p>
 
+<hr />
 
+<h3>Posts</h3>
+
+<ul>
+{% for post in site.posts %}
+    <li>
+        <span><a href="{{ post.url }}">{{ post.title | xml_escape }}</a> &laquo; {{ post.date | date_to_string }}</span>
+    </li>
+{% endfor %}
+</ul>
