@@ -1,2 +1,6 @@
 name: sburns.org
 pygments: true
+markdown: redcarpet
+
+kramdown:
+    input: GFM
