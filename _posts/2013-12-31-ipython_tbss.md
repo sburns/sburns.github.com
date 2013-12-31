@@ -90,6 +90,6 @@ Much like python's built-in `map`, `lview.map_async` takes a function and an ite
 
 ### Caveats & Conclusions
 
-This isn't the cleanest nor easiest-to-setup method to parallelize TBSS. However, I've found IPython's parallel machinery to be bullet-proof and provide the right level of control when I need to run lots of little jobs. This method is definitely overkill if you have a single machine to do work on and like I said, definitely use `multiprocessing` (or better, [joblib](https://github.com/joblib/joblib), a great wrapper around multiprocessing).
+This isn't the cleanest nor easiest-to-setup method to parallelize TBSS. However, I've found IPython's parallel machinery to be bullet-proof and provide the right level of control when I need to run lots of little jobs. This method is definitely overkill if you have a single machine and like I said above, definitely use `multiprocessing` (or better, [joblib](https://github.com/joblib/joblib), a great wrapper around multiprocessing).
 
 I think this is a great example of just how much IPython can help in your work. If the [notebook](http://ipython.org/ipython-doc/stable/interactive/notebook.html) feature sold you on IPython, the parallel tools are just icing on the cake.
