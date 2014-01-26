@@ -62,3 +62,7 @@ p li {
 a {
   color: #416F9F;
 }
+
+.center {
+  text-align: center;
+}

@@ -2,6 +2,8 @@
 layout: default
 ---
 
+## Software
+
 All software I publish publically can be found on [my github](https://github.com/sburns). Here's a sample:
 
 ### [PyCap](http://sburns.github.io/PyCap)

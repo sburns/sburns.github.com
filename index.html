@@ -2,18 +2,18 @@
 layout: default
 ---
 
-<h1>Hello</h1>
+<h1 class="center">Hello</h1>
 
 <p>
-    My name is Scott. I like to build things. I usually use python or wood.
+  I'm Scott. I like to build things. I usually use python or wood.
 </p>
 
 <p>
-    I live in Nashville, am married to a wonderful woman with whom I share a beautiful daughter and love to hike.
+  I live in Nashville, am married to a wonderful woman with whom I share a beautiful daughter and love to hike.
 </p>
 
 <p>
-    I work at Vanderbilt University for the <a href="http://kc.vanderbilt.edu/educationandbrainlab">Education and Brain Science Research Lab</a>. We study reading disabilities in children and I lead the Magnetic Resonance Imaging side of our research. I write lots of little- and medium-sized tools to make our lives easier related to imaging processing &amp; analysis and the production of good science.
+    I work at <a href="http://www.vanderbilt.edu/">Vanderbilt University</a> for the <a href="http://kc.vanderbilt.edu/educationandbrainlab">Education and Brain Science Research Lab</a>. We study reading disabilities in children and I lead the Magnetic Resonance Imaging side of our research. I write lots of little- and medium-sized tools, libraries and applications to make our lives easier related to imaging processing &amp; analysis and the production of good science.
 </p>
 
 <hr />
@@ -23,7 +23,7 @@ layout: default
 <ul>
 {% for post in site.posts %}
     <li>
-        <span><a href="{{ post.url }}">{{ post.title | xml_escape }}</a> &laquo; {{ post.date | date_to_string }}</span>
+        <span><a href="{{ post.url }}"><strong>{{ post.title | xml_escape }}</strong></a> &middot; {{ post.date | date: '%B %-d, %Y' }}</span>
     </li>
 {% endfor %}
 </ul>
