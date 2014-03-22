@@ -5,6 +5,8 @@ layout: post
 published: True
 ---
 
+*Update: This post was spurred by a [brief exchange on Twitter](https://twitter.com/scottsburns/status/444216195773120512) with Matt Davis ([@jiffyclub](https://twitter.com/jiffyclub)). Apologies for not attributing this originally.*
+
 Like I've said in the [past]({% post_url 2014-01-28-packaging-best-practices %}), it's irresponsible to produce and share un-tested code. [Travis-CI](https://travis-ci.org) is a system that takes testing one step farther. They've setup an integration with Github such that when commits on any branch are pushed to your repository, Travis will pull the branch to one of their testing servers and execute a series of tests on your behalf. This is fantastic because:
 
 1. Users don't have to take your word that this package is tested.
