@@ -66,3 +66,7 @@ a {
 .center {
   text-align: center;
 }
+
+#left-col {
+  padding-left: 10px;
+}
