@@ -1,29 +1,35 @@
 ---
 layout: default
 ---
+<div class="row vert-spacer">
+</div>
+<div class="row">
+  <div class="span6">
+    <img src="/assets/img/portrait.jpg" width="200" class="pull-right">
+    <p>
+      I'm Scott. I like to build things. I usually use python or wood.
+    </p>
 
-<h1 class="center">Hello</h1>
+    <p>
+      I live in Nashville, am married to a wonderful woman with whom I share a beautiful daughter and love to hike.
+    </p>
 
-<p>
-  I'm Scott. I like to build things. I usually use python or wood.
-</p>
-
-<p>
-  I live in Nashville, am married to a wonderful woman with whom I share a beautiful daughter and love to hike.
-</p>
-
-<p>
-    I work at <a href="http://www.vanderbilt.edu/">Vanderbilt University</a> for the <a href="http://kc.vanderbilt.edu/educationandbrainlab">Education and Brain Science Research Lab</a>. We study reading disabilities in children and I lead the Magnetic Resonance Imaging side of our research. I write lots of little- and medium-sized tools, libraries and applications to make our lives easier related to imaging processing &amp; analysis and the production of good science.
-</p>
+    <p>
+        I work at <a href="http://www.vanderbilt.edu/">Vanderbilt University</a> for the <a href="http://kc.vanderbilt.edu/educationandbrainlab">Education and Brain Science Research Lab</a>. We study reading disabilities in children and I lead the Magnetic Resonance Imaging side of our research. I write lots of little- and medium-sized tools, libraries and applications to make our lives easier related to imaging processing &amp; analysis and the production of good science.
+    </p>
+  </div>
+</div>
 
 <hr />
 
-<h3>Posts</h3>
+<div class="row">
+  <h3>Posts</h3>
 
-<ul>
-{% for post in site.posts %}
-    <li>
-        <span><a href="{{ post.url }}"><strong>{{ post.title | xml_escape }}</strong></a> &middot; {{ post.date | date: '%B %-d, %Y' }}</span>
-    </li>
-{% endfor %}
-</ul>
+  <ul>
+  {% for post in site.posts %}
+      <li>
+          <span><a href="{{ post.url }}"><strong>{{ post.title | xml_escape }}</strong></a> &middot; {{ post.date | date: '%B %-d, %Y' }}</span>
+      </li>
+  {% endfor %}
+  </ul>
+</div>
