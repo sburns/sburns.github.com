@@ -1,6 +1,6 @@
 ---
 title: A Recipe for Cortical Tractography Using Freesufer Labels
-date: 2014-04-25
+date: 2014-05-03
 layout: post
 published: True
 ---
