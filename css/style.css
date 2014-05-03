@@ -74,3 +74,8 @@ a {
 .vert-spacer {
   padding-top: 60px;
 }
+
+.centered {
+  padding-left: 12.5%;
+  padding-right: 12.5%;
+}
