@@ -585,7 +585,7 @@ for roi in processed_seed_list:
         # if this particular seed hasn't finished processing, you can still
         # build the matrix by catching OSErrors that pop up from trying
         # to open the non-existent files
-        conn[idx, :] = collapse_probtrack_results(waytotal_file, result)
+        conn[idx, :] = collapse_probtrack_results(waytotal_file, matrix_file)
     except OSError:
         pass
     idx += 1
