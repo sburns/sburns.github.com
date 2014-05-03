@@ -544,7 +544,7 @@ Let's walk through the options because I've wasted many months of compute time g
 * `--waycond='OR'` this determines the boolean logic for rejecting (or keeping) pathways given by `--waypoints`. In this instance, I only want the stream lines to pass through the left or right white matter, not necessarily both.
 * `--targetmasks=seeds.txt` This file gives path names to the seeds of interest. As I said before, this is every region from the brain.
 
-The time it takes `probtrackx2` to finish a region depends on the size of the region. As you can see above in the cortical parcellation picture, not all regions are the same size. Hence some runs not take very long (~15 minutes) and others will take a **very long time**, upwards of 96 hours on modern hardware. Having done this processing on a few subjects, I can say that all told these runs take about 30 days of compute time **per subject**. Grab a coffee and pillow.
+The time it takes `probtrackx2` to finish a region depends on the size of the region. As you can see above in the cortical parcellation picture, not all regions are the same size. Hence some runs don't take very long (~90 minutes) and others will take a **very long time**, upwards of 96 hours on modern hardware. Having done this processing on a few subjects, I can say that all told these runs take about 30 days of compute time **per subject**. Grab a coffee and pillow.
 
 ### Analysis
 
