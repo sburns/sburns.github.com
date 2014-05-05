@@ -7,11 +7,11 @@ published: True
 
 In this post, I'm going to describe a method I've been working on for performing probabilistic tractography in a single subject using automatically generated cortical labels from Freesurfer. This isn't new or groundbreaking, however the description of such methods as found in a paper is generally a lossy transmission of the **actual code** used to generate this kind of analysis.
 
-Scientific replicability & reproducibility require a working implemention and that I've not seen such a description of this kind of analysis & processing in the internet, hence this article. I hope this is helpful to the community. It's also taken a lot of time for me to get here so hopefully you won't have to make the same mistakes I have (but mistakes are good so hopefully you make your own :)
+Scientific replicability & reproducibility require a working implemention and I've not seen such a description of this kind of analysis & processing in the internet, hence this article. I hope this is helpful to the community. It's also taken a lot of time for me to get here so hopefully you won't have to make the same mistakes I have (but mistakes are good so hopefully you make your own :)
 
 I'm making certain assumptions & decisions in this analysis. If you don't agree with them, that's alright, you're not going to hurt my feelings. It doesn't make this any more or less correct. This is an immature technique and I don't think there are hard & fast rules the field has yet approved for cortical tractography. But if you think something is **really** wrong, I'd love to get your opinion, discuss it and potentially update this post.
 
-The goal of this analysis is to get a measure of structural connectivity between all cortical "regions" of the brain. There are an infinite amount of ways to divy up a brain into regions of interest. Here, I'm choosing to use the 2009 labels produced by Freesufer Destrieux atlas. Using FSL's `probtrackx2` tool, we'll use DTI data to perform "in-silico tractography" (hand-waving) from each region and measure to what degree each region "connects" to every other region. There are a lot of caveats in the above paragraph & a lot of underlying assumptions I'm making up-to-and-including:
+The goal of this analysis is to get a measure of structural connectivity between all cortical "regions" of the brain. There are an infinite amount of ways to divy up a brain into regions of interest. Here, I'm choosing to use the 2009 labels produced by Freesurfer Destrieux atlas. Using FSL's `probtrackx2` tool, we'll use DTI data to perform "in-silico tractography" (hand-waving) from each region and measure to what degree each region "connects" to every other region. There are a lot of caveats in the above paragraph & a lot of underlying assumptions I'm making up-to-and-including:
 
 * Freesurfer generates accurate & reliable cortical labels from a clean T1 image.
 * [Diffusion MRI][dti] captures the relative motion of water molecules in tissue.
@@ -30,7 +30,7 @@ If I haven't offended you with any of these statements, let's get on with it.
 
 #### Data
 
-This analysis requires the following raw data:
+This analysis requires the following MR data:
 
 1. A Freesurfer-able T1 image. This should cover the entire brain at high-resolution (~1mm<sup>3</sup> voxels). For this article, I'm going to call this file `T1.nii.gz`.
 2. A DTI sequence with at least 30 directions, though depending on your SnR fewer directions can be acceptable in certain cases. The standard sequence I use is 60 directions. I'm going to refer to this file as `dti.nii.gz`.
@@ -73,11 +73,11 @@ $ mri_annotation2label --subject janedoe \
     --surface white
 ```
 
-The first `recon-all` imports the data and creates the standard folder layout in `$SUBJECTS_DIR/janedoe`. The second call executes all three steps of the Freesurfer pipeline (note the `-all` flag). The two `mri_annotation2label` commands convert the Destrieux cortical annotation to individual labels. These labels are written into the `label/` directory for the subject. Labels are simple text files that map Freesufer vertices to particular cortical regions.
+The first `recon-all` imports the data and creates the standard folder layout in `$SUBJECTS_DIR/janedoe`. The second call executes all three steps of the Freesurfer pipeline (note the `-all` flag). The two `mri_annotation2label` commands convert the Destrieux cortical annotation to individual labels across the two hemispheres. These labels are written into the `label/` directory for the subject. Labels are simple text files that map Freesufer vertices to particular cortical regions.
 
 This process usually takes between 20-40 hours depending on the quality of data. Grab a cup of coffee or a nap.
 
-After this completes, we need to do some quality assurance. I'm sure there are more rigorous examples out there but this is what I do. For `janedoe`, I generate the following tcl scripts:
+After this completes, we need to do quality assurance. I'm sure there are more rigorous examples out there but this is what I do. For `janedoe`, I generate the following tcl scripts:
 
 
 ```tcl
@@ -143,9 +143,9 @@ On the surface images you're looking for sharp points in the inflated surfaces--
 
 <img class="centered" width="75%" src="/assets/img/lh-annot-lateral.png">
 
-Becuase Freesurfer makes 3D meshes of the white-matter and pial-surfaces, we can do fancy things like inflate the brain pushing out on those meshes. The picture above is the "inflated" view. Each color represents a different labeled region of cortex. Note the spikes in the temporal pole (lowest portion of this view). This is not ideal.
+Becuase Freesurfer makes 3D meshes of the white-matter and pial surfaces, we can do fancy things like inflate the brain by pushing out on those meshes. The picture above is the "inflated" view. Each color represents a different labeled region of cortex. Note the spikes in the temporal pole (lowest portion of this view). This is not ideal.
 
-Freesurfer produces a **lot** of other data . Given the measure flags I passed above to `recon-all`, more than 2650 data points can be extracted from the files in the `$SUBJECTS_DIR/janedoe/stats/` folder. If you're interested in that sort of thing, you might take a look at code I wrote [to do just that][recon-stats].
+Freesurfer produces a **lot** of other data . Given the measure flags I passed above to `recon-all`, more than 2650 data points can be extracted from files in the `$SUBJECTS_DIR/janedoe/stats/` folder. If you're interested in that sort of thing, you might take a look at code I wrote [to do just that][recon-stats].
 
 Let's assume Jane was a great participant and her T1 was very clean. Freesurfer is quite robust and most likely performed good segmentation & labels. On to the diffusion images.
 
@@ -199,7 +199,7 @@ We're interested in `dtifit_FA.nii.gz`. `dtifit` doesn't implement the most stat
 
 <img width="75%" class="centered" src="/assets/img/FA_montage.png">
 
-These screenshots with taken with `fslview_bin`. On the left is the FA image. In FA images, values varies between 0 & 1 where 0 represents purely isotropic water diffusion. Picture how a golf ball might bounce around in a basketball--it could go anywhere. Where the FA image is brightest (towards 1), there is one specific direction that water is most likely to diffuse (like rolling a golf ball down a paper-towel rod, there isn't much place else for it to go). FA is typically highest in large fiber bundles such as the corpus callosum (the axonal bundles connecting the two hemispheres). The right image is color-coded by diffusion direction. Green is Anterior-Posterior, Red is Left-Right & Blue is Inferior-Superior (head-foot). The color intensity in this image is modulated by the FA value.
+These screenshots with taken with `fslview_bin`. On the left is the FA image. In FA images, values varies between 0 & 1 where 0 represents purely isotropic water diffusion. Picture how a golf ball might bounce around in a basketball--it could go anywhere. Where the FA image is brightest (towards 1), there is one specific direction that water is likely to diffuse (like rolling a golf ball down a paper-towel rod, there isn't much place else for it to go). FA is typically highest in large fiber bundles such as the corpus callosum (the axonal bundles connecting the two hemispheres). The right image is color-coded by diffusion direction. Green is Anterior-Posterior, Red is Left-Right & Blue is Inferior-Superior (head-foot). The color intensity in this image is modulated by the FA value.
 
 Its very important to look at these images for quality assurance. In the right image, we want to make sure our gradient table is correct and that we haven't flipped two dimensions. If this were the case, the image would look the same but colors would be switched. In the pure FA image, we're looking for smearing and other ugly artifacts which typically denote large amounts of motion.
 
