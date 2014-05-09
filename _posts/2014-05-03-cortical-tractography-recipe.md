@@ -19,7 +19,7 @@ The goal of this analysis is to get a measure of structural connectivity between
 * Action potentials are the primary means neurons use to communicate with one another.
 * During development, the brain organizes itself in such a way that groups of neurons that communicate often with other groups will develop large axonal bundles between one another.
 * These bundles restrict the diffusion of water in a way that is detectable during a diffusion MR sequence.
-* Using the diffusion information, we can build probability density functions at every voxel to describe our best guess at which way water flows at that particular voxel. These PDFs also help us characterize the uncertainity inherent in the measurement.
+* Using the diffusion information, we can build probability density functions at every voxel to describe our best guess at which way water flows at that particular voxel. These PDFs also help us characterize the uncertainty inherent in the measurement.
 * Using these PDFs, we can step through the diffusion image, generating the most likely path water would flow beginning at some point A. We call this a tract, streamline or sample.
 * Generating **lots** of these potential tracts, we can make statistically sound inferences about whether we actually trust that the generated tracts represent the actual underlying anatomy. The actual anatoamy is otherwise difficult to attain from our subjects, hence why we're imaging them.
 * Pulling this large amount of data together, we can generate a NxN connectivity matrix and plot the relative connectivity between all regions.
@@ -46,7 +46,7 @@ bvals
 
 #### Software
 
-I'll be using [Freesurfer][fs] & [FSL][fsl] for this analysis. These tools are freely available. In particular, I use Freesurfer 5.1 & FSL 5.0.6 though I'm fairly certain this will work in the newest version of Freesurfer, 5.3.
+I'll be using [Freesurfer][fs] & [FSL][fsl] for this analysis, both of which are freely available. In particular, I use Freesurfer 5.1 & FSL 5.0.6 though I'm fairly certain this will work in the newest version of Freesurfer, 5.3.
 
 ### Structural processing
 
