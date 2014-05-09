@@ -199,13 +199,13 @@ We're interested in `dtifit_FA.nii.gz`. `dtifit` doesn't implement the most stat
 
 <img width="75%" class="centered" src="/assets/img/FA_montage.png">
 
-These screenshots with taken with `fslview_bin`. On the left is the FA image. In FA images, values varies between 0 & 1 where 0 represents purely isotropic water diffusion. Picture how a golf ball might bounce around in a basketball--it could go anywhere. Where the FA image is brightest (towards 1), there is one specific direction that water is likely to diffuse (like rolling a golf ball down a paper-towel rod, there isn't much place else for it to go). FA is typically highest in large fiber bundles such as the corpus callosum (the axonal bundles connecting the two hemispheres). The right image is color-coded by diffusion direction. Green is Anterior-Posterior, Red is Left-Right & Blue is Inferior-Superior (head-foot). The color intensity in this image is modulated by the FA value.
+These screenshots were taken with `fslview_bin`. On the left is the fractional anisotropy (FA) image. In FA images, values varies between 0 & 1 where 0 represents purely isotropic water diffusion. Picture how a golf ball might bounce around inside a basketball--it could go anywhere. Where the FA image is brightest (towards 1), there is one specific direction that water is likely to diffuse (like rolling a golf ball down a paper-towel rod, there isn't much place else for it to go). FA is typically highest in large fiber bundles such as the corpus callosum (the axonal bundles connecting the two hemispheres). The right image is color-coded by diffusion direction. Green is Anterior-Posterior, Red is Left-Right & Blue is Inferior-Superior (head-foot). The color intensity in this image is modulated by the FA value.
 
 Its very important to look at these images for quality assurance. In the right image, we want to make sure our gradient table is correct and that we haven't flipped two dimensions. If this were the case, the image would look the same but colors would be switched. In the pure FA image, we're looking for smearing and other ugly artifacts which typically denote large amounts of motion.
 
 #### Generating PDFs
 
-At this point we have a motion- & artifact-corrected image (`dti_ecc.nii.gz`), the corrected gradient table (`bvecs`), the gradient values (`bvals`), and a mask of the non-diffusion-weighted image (`nodif_brain_mask.nii.gz`). If we were smart, we'd use `bedpostx` out of the box to generate PDFs of the diffusion direction and get on with tractography. Unfortunately, `bedpostx` takes about 20 minutes per slice and typically datasets will contain between 40 and 50 slices so this process takes about 15 hours of compute. Fortunately, it's an **extremely** parallelizable task. So the following script exactly mimics FSL 5's `bedpostx` but can run with a linear speedup based on the amount of processors on your machine.
+At this point we have a motion- & artifact-corrected image (`dti_ecc.nii.gz`), the corrected gradient table (`bvecs`), the gradient values (`bvals`), and a mask of the non-diffusion-weighted image (`nodif_brain_mask.nii.gz`). If we were smart, we'd use `bedpostx` out of the box to generate PDFs of the diffusion direction and get on with tractography. Unfortunately, `bedpostx` takes about 20 minutes per slice and typical datasets contain between 40 and 50 slices so this process takes about 15 hours of compute time. Fortunately, it's an **extremely** parallelizable task. So the following script exactly mimics FSL 5's `bedpostx` but can run with a linear speedup based on the amount of processors on your machine.
 
 ```bash
 $ cat ./bedpostx.sh
@@ -292,7 +292,7 @@ def cpus_to_use(ncpu):
 
 
 if __name__ == '__main__':
-    from rosie.subproc import run_cmd
+    from subprocess import call
 
     ap = create_parser()
     args = ap.parse_args(sys.argv[1:])
@@ -306,7 +306,7 @@ if __name__ == '__main__':
 
         # Create a pool and map run_cmd to the shell commands
         pool = mp.Pool(processes=ncpu)
-        pool.map(run_cmd, commands)
+        pool.map(call, commands)
 ```
 ```bash
 $ source ./bedpostx.sh
@@ -339,7 +339,7 @@ We're going to use these binarized files to constrain tractography.
 
 #### Registrations
 
-We need to be able to map labels in Freesurfer space to DTI space. Aligning a brain in one modality (T1) to another (DTI) is a process called registration. We're going to perform a number of registrations to produce a registration matrix that puts a Freesurfer label into DTI space.
+We need to be able to map labels in Freesurfer space to DTI space. Aligning a brain in one modality (T1) to another (DTI) is a process called registration. We're going to perform a number of registrations to produce a transform matrix that places a Freesurfer label into DTI space.
 
 ```bash
 # transform filenames
@@ -356,7 +356,7 @@ $ tkregister2 --mov $fs \
     --reg /tmp/junk \
     --fslregout $fs2str \
     --noedit
-# invert to create fs2str
+# invert to create str2fs
 $ convert_xfm -omat $str2fs -inverse $fs2str
 
 # Now transforming FA to structural:
@@ -479,7 +479,6 @@ Just for a sanity check, let's overlay a few of these volumes on the T1 image in
 **Now we're ready to being tractography** (If you're still with me, I applaud you)
 
 ### Tractography
-
 
 At this point, you're going to need a big computer. Each of these 148 seed regions can run independently, so if you have access to a compute cluster, by all means use it. For each probtracking run, we're going to do this:
 
