@@ -12,4 +12,5 @@ published: False
 
 
 
-[1]
+[1]: http://jakevdp.github.io/blog/2013/10/26/big-data-brain-drain/
+[2]: 
