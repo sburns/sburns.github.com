@@ -1,5 +1,5 @@
 ---
-title: Miscellaneous Thoughts on the Academic STEM Brain Drain or, How I Learned to Stop Worrying and Leave The Lab)
+title: Miscellaneous Thoughts on the Academic STEM Brain Drain or, How I Learned to Stop Worrying and Leave The Lab
 date: 2014-07-10
 layout: post
 published: True
