@@ -269,9 +269,6 @@ $ cat run_parallel.py
 Simple script to run a list of shell commands in parallel.
 
 """
-__author__ = 'Scott Burns <scott.s.burns@vanderbilt.edu>'
-__copyright__ = 'Copyright 2014 Vanderbilt University. All Rights Reserved'
-
 
 import sys
 import multiprocessing as mp
