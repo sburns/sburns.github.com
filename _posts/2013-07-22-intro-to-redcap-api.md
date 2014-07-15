@@ -409,4 +409,4 @@ There is more documentation for PyCap [here](http://sburns.github.io/PyCap).
 
 Any feedback about this tutorial is greatly appreciated. There isn't much on the
 internet about this so I hope you find it helpful in your work with REDCap. Feel
-free to email me with questions & comments at `scott.s.burns@vanderbilt.edu`
+free to open an issue on this post on [GitHub](https://github.com/sburns/sburns.github.com)
