@@ -1,6 +1,6 @@
 name: sburns.org
-pygments: true
-markdown: redcarpet
+highlighter: rouge
+markdown: kramdown
 
 kramdown:
     input: GFM
